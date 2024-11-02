@@ -39,13 +39,12 @@ export const playgoundSlice = createSlice({
             enteredValue: action.payload,
             success: isSuccess,
           };
-        }
-
-        if (isSuccess) {
-          state.totalSuccess += 1;
-        } else {
-          state.totalUnsuccess += 1;
-          state.totalSuccess = 0;
+          if (isSuccess) {
+            state.totalSuccess += 1;
+          } else {
+            state.totalUnsuccess += 1;
+            state.totalSuccess = 0;
+          }
         }
       }
     },
@@ -63,9 +62,15 @@ export const playgoundSlice = createSlice({
         }
       }
     },
+    resetStore: () => initialState,
   },
 });
 
-export const { setCurrentStep, setSteps, setEnteredValue, setUnsuccess } =
-  playgoundSlice.actions;
+export const {
+  setCurrentStep,
+  setSteps,
+  setEnteredValue,
+  setUnsuccess,
+  resetStore,
+} = playgoundSlice.actions;
 export default playgoundSlice.reducer;

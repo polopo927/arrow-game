@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
 import { IMapArrow } from "../../redux/types";
+import { RandomArrow } from "./RandomArrow";
+import { WelcomeText } from "./WelcomeText";
 
 export interface IRandomKeysProps {
   isTimerActive: boolean;
@@ -18,11 +20,12 @@ export const RandomKeys: React.FC<IRandomKeysProps> = ({ isTimerActive }) => {
   const state = useSelector((state) => state.playground);
   return (
     <div>
-      {state.steps.map((el) => (
-        <span key={el.step}>
-          {MAP_ARROW[el.currentValue as keyof IMapArrow]}
-        </span>
-      ))}
+      <h3>Random keys</h3>
+      {state.steps.length === 0 ? (
+        <WelcomeText isTimerActive={isTimerActive} />
+      ) : (
+        <RandomArrow />
+      )}
     </div>
   );
 };
