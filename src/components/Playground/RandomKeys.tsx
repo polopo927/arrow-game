@@ -14,12 +14,14 @@ export const MAP_ARROW: IMapArrow = {
 
 export const ARR_ARROW = Object.keys(MAP_ARROW);
 
-export const RandomKeys = ({ isTimerActive }) => {
+export const RandomKeys: React.FC<IRandomKeysProps> = ({ isTimerActive }) => {
   const state = useSelector((state) => state.playground);
   return (
     <div>
-      {state.steps.map((el, index) => (
-        <span key={index}>{MAP_ARROW[el.currentValue as keyof IMapArrow]}</span>
+      {state.steps.map((el) => (
+        <span key={el.step}>
+          {MAP_ARROW[el.currentValue as keyof IMapArrow]}
+        </span>
       ))}
     </div>
   );

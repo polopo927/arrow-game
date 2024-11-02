@@ -1,10 +1,15 @@
 export interface IStepsState {
-  currentValue: string;
+  step: number;
+  currentValue: string | null;
+  enteredValue: string | null;
+  success: boolean | null;
 }
 
 export interface IPlaygroundState {
   currentStep: number;
   steps: IStepsState[];
+  totalSuccess: number;
+  totalUnsuccess: number;
 }
 
 export interface IMapArrow {

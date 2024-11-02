@@ -1,8 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { Controls } from "./Controls";
-import { setCurrentStep, setSteps } from "../../redux/slices/playgoundSlice";
+import {
+  setCurrentStep,
+  setSteps,
+  setUnsuccess,
+} from "../../redux/slices/playgoundSlice";
 import { RandomKeys } from "./RandomKeys";
+import { KeyPressed } from "./KeyPressed";
+import { Score } from "./score";
 
 export const Playground: React.FC = () => {
   const state = useSelector((state) => state.playground);
@@ -13,6 +19,7 @@ export const Playground: React.FC = () => {
   useEffect(() => {
     if (isTimerActive) {
       timerId.current = setInterval(() => {
+        dispatch(setUnsuccess());
         dispatch(setCurrentStep());
         dispatch(setSteps());
       }, 2000);
@@ -33,6 +40,8 @@ export const Playground: React.FC = () => {
         setIsTimerActive={setIsTimerActive}
       />
       <RandomKeys isTimerActive={isTimerActive} />
+      <KeyPressed isTimerActive={isTimerActive} />
+      <Score />
     </div>
   );
 };
